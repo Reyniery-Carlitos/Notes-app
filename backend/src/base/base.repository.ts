@@ -1,0 +1,9 @@
+import { type EntityTarget, Repository } from "typeorm";
+import { dataSource } from "../typeorm-config";
+import { type BaseEntity } from "./base.entity";
+
+export abstract class BaseRepository<T extends BaseEntity> extends Repository<T> {
+  protected constructor (entity: EntityTarget<T>) {
+    super(entity, dataSource.manager);
+  }
+}
